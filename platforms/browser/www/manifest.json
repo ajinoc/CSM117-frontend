@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Telestrations",
+  "short_name": "Telestrations",
+  "version": "com.telestrations",
+  "description": "CSM117 Group Project",
+  "author": "Telestrations Team",
+  "icons": [],
+  "start_url": "index.html"
+}
