@@ -2,7 +2,7 @@ window.addEventListener('load', eventWindowLoaded, false);
 function eventWindowLoaded() {
     canvasApp();
 
-    var socket = io("https://damp-citadel-60536.herokuapp.com/");
+    var socket = io("https://telestrations-csm117.herokuapp.com/");
     var el = document.getElementById('server-time');
 
     socket.on('time', function(timeString) {
