@@ -4,7 +4,6 @@
 <head>
 <title>Finger Painting</title>
 <script src="modernizr-1.6.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="js/finger_painting.js"></script>
 </head>
 <body>
@@ -15,7 +14,6 @@
 </div>
 <div>
 <h1>Finger Painting</h1>
-<p id='server-time'></p>
 <p>Click/tap a color below to select a color, and then drag/swipe on the
   canvas above to draw a picture.</p>
 <p>Color selected: <span id="color_chosen">Black</span></p>
@@ -31,7 +29,6 @@
 <input type="button" id="White" style="background-color: white; width: 25px; height: 25px;"/>
 </p>  
 <p><input type="button" id="reset_image" value="Reset Drawing"/></p>
-<p><input type="button" id="send_image" value="Send Image"/></p>
 </div>
 </body>
 </html>

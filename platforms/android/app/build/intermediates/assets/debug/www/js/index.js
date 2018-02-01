@@ -17,6 +17,8 @@
  * under the License.
  */
 var app = {
+    socket: null,
+
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -40,6 +42,8 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+
+        socket = io('https://telestrations-csm117.herokuapp.com/');
     }
 };
 

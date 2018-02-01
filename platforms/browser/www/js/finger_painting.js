@@ -1,13 +1,6 @@
 window.addEventListener('load', eventWindowLoaded, false);	
 function eventWindowLoaded() {
     canvasApp();
-
-    var socket = io("https://telestrations-csm117.herokuapp.com/");
-    var el = document.getElementById('server-time');
-
-    socket.on('time', function(timeString) {
-      el.innerHTML = 'Server time: ' + timeString;
-    });
 }
 
 function canvasSupport () {
@@ -32,7 +25,6 @@ function canvasApp(){
 	var whiteButton = document.getElementById("White");
 	var colorChosen = document.getElementById("color_chosen");
 	var resetButton = document.getElementById("reset_image");
-    var sendButton = document.getElementById("send_image");
         redButton.addEventListener('click', colorPressed, false);
         orangeButton.addEventListener('click', colorPressed, false);
         yellowButton.addEventListener('click', colorPressed, false);
@@ -43,7 +35,6 @@ function canvasApp(){
         blackButton.addEventListener('click', colorPressed, false);
         whiteButton.addEventListener('click', colorPressed, false);
         resetButton.addEventListener('click', resetPressed, false);
-        sendButton.addEventListener('click', sendPressed, false);
 	drawScreen();
     }
 
@@ -109,29 +100,4 @@ function canvasApp(){
         theCanvas.width = theCanvas.width; // Reset grid
         drawScreen();
     }
-
-    function sendPressed(e) {
-        let dataURL = theCanvas.toDataURL();
-        let data = {image: dataURL};
-
-        console.log(data);
-
-        let headers = new Headers();
-        headers.append('Accept', 'application/json'); // This one is enough for GET requests
-        headers.append('Content-Type', 'application/json'); // This one sends body
-
-        fetch("https://damp-citadel-60536.herokuapp.com/", {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(data)
-        }).then(function(response) {
-            console.log(response);
-        });
-    }
 }
-
-        
-
-  
-
-
