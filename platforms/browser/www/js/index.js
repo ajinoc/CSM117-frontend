@@ -10,7 +10,7 @@ let app = {
     },
 
     receivedEvent: function(id) {
-        if (id === "deviceready") {
+        if (id === 'deviceready') {
             this.socket = io('https://telestrations-csm117.herokuapp.com/');
 
             let uploadText = document.getElementById('uploadText');
@@ -20,8 +20,12 @@ let app = {
             uploadText.onclick = (e) => {
                 let text = textbox.value;
                 this.socket.emit('uploadText', text);
-                textinputdiv.innerHTML = '<p>Submitted!</p>';
+                //textinputdiv.innerHTML = '<p>Submitted!</p>';
             };
+
+            this.socket.on('downloadText', (text) => {
+                alert(text);
+            });
         }
     }
 };

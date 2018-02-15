@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jan 31 18:38:10 PST 2018
+#Thu Feb 15 12:15:02 PST 2018
 25.file=/home/ajinoc/Dropbox/School/Senior/Winter18/CSM117/project/frontend/platforms/android/app/build/intermediates/assets/debug/www/cordova.js
 25.base=/home/ajinoc/Dropbox/School/Senior/Winter18/CSM117/project/frontend/platforms/android/app/build/intermediates/assets/debug
 22.set=ANDROID_RESOURCE

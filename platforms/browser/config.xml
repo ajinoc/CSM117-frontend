@@ -8,7 +8,10 @@
         Telestrations Team
     </author>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="https://telestrations-csm117.herokuapp.com/*" />
+    <access origin="wss://telestrations-csm117.herokuapp.com/*" />
+    <allow-navigation href="https://telestrations-csm117.herokuapp.com/*" />
+    <allow-navigation href="wss://telestrations-csm117.herokuapp.com/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
