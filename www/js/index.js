@@ -15,7 +15,6 @@ let app = {
 
             let uploadText = document.getElementById('uploadText');
             let textbox = document.getElementById('textbox');
-            let textinputdiv = document.getElementById('textinputdiv');
 
             uploadText.onclick = (e) => {
                 let text = textbox.value;

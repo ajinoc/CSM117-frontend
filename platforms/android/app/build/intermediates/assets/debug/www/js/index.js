@@ -15,12 +15,10 @@ let app = {
 
             let uploadText = document.getElementById('uploadText');
             let textbox = document.getElementById('textbox');
-            let textinputdiv = document.getElementById('textinputdiv');
 
             uploadText.onclick = (e) => {
                 let text = textbox.value;
                 this.socket.emit('uploadText', text);
-                //textinputdiv.innerHTML = '<p>Submitted!</p>';
             };
 
             this.socket.on('downloadText', (text) => {
