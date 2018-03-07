@@ -10,15 +10,16 @@
     <body>
         <div class="app">
             <h1>Telestrations</h1>
-            <div>
+            <div id="startSentence">
                 <p>Enter phrase here: <input type="text" id="textbox"></p>
+                <p id="timeLeft"></p>
                 <button id="uploadText">Send text</button>
             </div>
-            <div>
-                <canvas id="canvas"></canvas>
+            <div style="display: none">
+                <canvas id="canvas"></canvas><br>
+                <button id="uploadPicture">Send picture</button>
+                <button id="clearCanvas">Clear</button>
             </div>
-            <button id="uploadPicture">Send picture</button>
-            <button id="clearCanvas">Clear</button>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>

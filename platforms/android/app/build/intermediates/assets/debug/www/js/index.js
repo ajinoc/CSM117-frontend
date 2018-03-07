@@ -1,5 +1,6 @@
 let app = {
     socket: null,
+    timeLeft: 60,
 
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -22,9 +23,22 @@ let app = {
 
             let clearCanvas = document.getElementById('clearCanvas');
 
+            let timerInterval = setInterval(() => {
+                if (this.timeLeft == 0) {
+                    uploadText.click();
+                }
+
+                document.getElementById('timeLeft').innerHTML = `Time Left: ${this.timeLeft--} seconds`;
+            }, 1000);
+
             uploadText.onclick = (e) => {
+                clearInterval(timerInterval);
+                this.timeLeft = 60;
+
                 let text = textbox.value;
                 this.socket.emit('uploadText', text);
+
+                document.getElementById('startSentence').innerHTML = '<p>Submitted! Waiting for other players...</p>';
             };
 
             uploadPicture.onclick = (e) => {
