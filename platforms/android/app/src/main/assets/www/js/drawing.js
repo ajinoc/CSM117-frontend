@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
 }, false);
 
 function newCanvas() {
-  canvas = document.getElementById("canvas"); 
+  canvas = document.getElementById("canvas");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight - 100;
+  
   ctx = canvas.getContext("2d");
 
   ctx.strokeStyle = color;

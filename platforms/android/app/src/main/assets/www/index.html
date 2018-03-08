@@ -10,12 +10,28 @@
     <body>
         <div class="app">
             <h1>Telestrations</h1>
-            <div id="startSentence">
+
+            <div id="homepage">
+                <p>Enter Name Here: <input type="text" id="playerName"></p>
+                <button id="joinGame">Join Game</button>
+            </div>
+
+            <div id="roomList" style="display: none">
+                <p>Players:</p>
+                <ul id="playerList" style="list-style-type:none">
+                </ul><br>   
+                <button id="startGame">Start Game</button>
+            </div>
+
+            <div id="startPhrase" style="display: none">
                 <p>Enter phrase here: <input type="text" id="textbox"></p>
-                <p id="timeLeft"></p>
+                <p id="countdown"></p>
                 <button id="uploadText">Send text</button>
             </div>
-            <div style="display: none">
+
+            <div id="drawingRound" style="display: none">
+                <h2>Drawing time!</h2>
+                <p>Draw a picture of the following phrase: <span id="caption"></span></p>
                 <canvas id="canvas"></canvas><br>
                 <button id="uploadPicture">Send picture</button>
                 <button id="clearCanvas">Clear</button>

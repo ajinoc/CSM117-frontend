@@ -1,7 +1,4 @@
 let app = {
-    socket: null,
-    timeLeft: 60,
-
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
@@ -12,56 +9,96 @@ let app = {
 
     receivedEvent: function(id) {
         if (id === 'deviceready') {
-            this.socket = io('https://telestrations-csm117.herokuapp.com/');
+            let socket = io('https://telestrations-csm117.herokuapp.com/');
 
-            let uploadText = document.getElementById('uploadText');
+            let timeLeft = 60;
+            let timerInterval;
+
+            let homepage = document.getElementById('homepage');
+            let playerName = document.getElementById('playerName');
+            let joinGame = document.getElementById('joinGame');
+
+            let roomList = document.getElementById('roomList');
+            let playerList = document.getElementById('playerList');
+            let startGame = document.getElementById('startGame');
+
+            let startPhrase = document.getElementById('startPhrase');
             let textbox = document.getElementById('textbox');
+            let countdown = document.getElementById('countdown');
+            let uploadText = document.getElementById('uploadText');
 
-            let uploadPicture = document.getElementById('uploadPicture');
+            let drawingRound = document.getElementById('drawingRound');
+            let caption = document.getElementById('caption');
             let canvas = document.getElementById('canvas');
             let context = canvas.getContext('2d');
-
+            let uploadPicture = document.getElementById('uploadPicture');
             let clearCanvas = document.getElementById('clearCanvas');
 
-            let timerInterval = setInterval(() => {
-                if (this.timeLeft == 0) {
-                    uploadText.click();
-                }
 
-                document.getElementById('timeLeft').innerHTML = `Time Left: ${this.timeLeft--} seconds`;
-            }, 1000);
+            joinGame.onclick = (e) => {
+                socket.emit('setName', playerName.value);
+                homepage.style.display = 'none';
+                roomList.style.display = '';
+            };
+
+            startGame.onclick = (e) => {
+                socket.emit('startGame');
+            };
 
             uploadText.onclick = (e) => {
                 clearInterval(timerInterval);
-                this.timeLeft = 60;
-
-                let text = textbox.value;
-                this.socket.emit('uploadText', text);
-
-                document.getElementById('startSentence').innerHTML = '<p>Submitted! Waiting for other players...</p>';
+                timeLeft = 60;
+                socket.emit('uploadText', textbox.value);
+                startPhrase.innerHTML = '<p>Submitted! Waiting for other players...</p>';
+                startPhrase.style.display = 'none';
+                drawingRound.style.display = '';
             };
 
             uploadPicture.onclick = (e) => {
                 let picture = canvas.toDataURL();
-                this.socket.emit('uploadPicture', picture);
+                socket.emit('uploadPicture', picture);
             };
 
             clearCanvas.onclick = (e) => {
                 context.clearRect(0, 0, canvas.width, canvas.height);
             };
 
-            this.socket.on('downloadText', (text) => {
-                alert(text);
+            socket.on('downloadText', (text) => {
+                caption.innerHTML = text;
             });
 
-            this.socket.on('downloadPicture', (picture) => {
-                context.clearRect(0, 0, canvas.width, canvas.height);
+            socket.on('downloadPicture', (picture) => {
+                console.log(picture);
+                /*context.clearRect(0, 0, canvas.width, canvas.height);
                 
                 var img = new Image;
                 img.onload = function() {
                     context.drawImage(img, 0, 0);
                 };
-                img.src = picture;
+                img.src = picture;*/
+            });
+
+            socket.on('startGame', () => {
+                roomList.style.display = 'none';
+                startPhrase.style.display = '';
+
+                timerInterval = setInterval(() => {
+                    if (timeLeft == 0) {
+                        uploadText.click();
+                    }
+
+                    countdown.innerHTML = `Time Left: ${timeLeft--} seconds`;
+                }, 1000);
+            });
+
+            socket.on('getNames', (names) => {
+              let nameList = '';
+
+              for (id in names) {
+                nameList += `<li>${names[id]}</li>`;
+              }
+
+              playerList.innerHTML = nameList;
             });
         }
     }
