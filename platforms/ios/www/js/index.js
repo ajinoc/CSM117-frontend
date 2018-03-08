@@ -37,7 +37,8 @@ let app = {
             };
 
             this.socket.on('downloadText', (text) => {
-                alert(text);
+                let textSpace = document.getElementById('caption');
+                textSpace.innerHTML = text;
             });
 
             this.socket.on('downloadPicture', (picture) => {
