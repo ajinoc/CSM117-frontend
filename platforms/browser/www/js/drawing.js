@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function newCanvas() {
   canvas = document.getElementById("canvas");
-  canvas.width = window.innerWidth;
+  canvas.width = window.innerWidth - 20;
   canvas.height = window.innerHeight - 100;
+  canvas.style.border = '1px dashed #000';
   
   ctx = canvas.getContext("2d");
 

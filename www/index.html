@@ -7,7 +7,7 @@
         <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
         <title>Telestrations</title>
     </head>
-    <body>
+    <body style="touch-action: none">
         <div class="app">
             <h1>Telestrations</h1>
 
@@ -32,13 +32,14 @@
             <div id="drawingRound" style="display: none">
                 <h2>Drawing time!</h2>
                 <p>Draw a picture of the following phrase: <span id="caption"></span></p>
-                <canvas id="canvas"></canvas><br>
                 <button id="uploadPicture">Send picture</button>
-                <button id="clearCanvas">Clear</button>
+                <button id="clearCanvas">Clear</button><br><br>
+                <canvas id="canvas"></canvas>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/drawing.js"></script>
     </body>

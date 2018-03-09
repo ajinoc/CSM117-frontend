@@ -50,13 +50,12 @@ let app = {
                 timeLeft = 60;
                 socket.emit('uploadText', textbox.value);
                 startPhrase.innerHTML = '<p>Submitted! Waiting for other players...</p>';
-                startPhrase.style.display = 'none';
-                drawingRound.style.display = '';
             };
 
             uploadPicture.onclick = (e) => {
                 let picture = canvas.toDataURL();
                 socket.emit('uploadPicture', picture);
+                drawingRound.innerHTML = '<p>Submitted! Waiting for other players...</p>';
             };
 
             clearCanvas.onclick = (e) => {
@@ -64,7 +63,20 @@ let app = {
             };
 
             socket.on('downloadText', (text) => {
+                countdown.innerHTML = `Time Left: ${timeLeft} seconds`;
+                drawingRound.insertBefore(countdown, canvas);
+                
+                timerInterval = setInterval(() => {
+                    if (timeLeft == 0) {
+                        uploadPicture.click();
+                    }
+
+                    countdown.innerHTML = `Time Left: ${timeLeft--} seconds`;
+                }, 1000);
+
                 caption.innerHTML = text;
+                startPhrase.style.display = 'none';
+                drawingRound.style.display = '';
             });
 
             socket.on('downloadPicture', (picture) => {
@@ -81,6 +93,8 @@ let app = {
             socket.on('startGame', () => {
                 roomList.style.display = 'none';
                 startPhrase.style.display = '';
+
+                countdown.innerHTML = `Time Left: ${timeLeft} seconds`;
 
                 timerInterval = setInterval(() => {
                     if (timeLeft == 0) {
