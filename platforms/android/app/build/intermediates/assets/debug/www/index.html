@@ -24,9 +24,9 @@
             </div>
 
             <div id="startPhrase" style="display: none">
-                <p>Enter phrase here: <input type="text" id="textbox"></p>
+                <p>Enter phrase here: <input type="text" id="startPhraseTextbox"></p>
                 <p id="countdown"></p>
-                <button id="uploadText">Send text</button>
+                <button id="uploadStartText">Submit</button>
             </div>
 
             <div id="drawingRound" style="display: none">
@@ -36,10 +36,20 @@
                 <button id="clearCanvas">Clear</button><br><br>
                 <canvas id="canvas"></canvas>
             </div>
+
+            <div id="writingRound" style="display: none">
+                <h2>Writing time!</h2>
+                <p>Write a sentence describing the following picture: <input type="text" id="textbox"></p>
+                <button id="uploadText">Submit</button>
+                <canvas id="staticCanvas"></canvas>
+            </div>
+
+            <div id="submittedDiv" style="display: none">
+                <p>Submitted! Waiting for other players...</p>
+            </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/drawing.js"></script>
     </body>

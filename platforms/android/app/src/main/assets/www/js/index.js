@@ -23,9 +23,9 @@ let app = {
             let startGame = document.getElementById('startGame');
 
             let startPhrase = document.getElementById('startPhrase');
-            let textbox = document.getElementById('textbox');
+            let startPhraseTextbox = document.getElementById('startPhraseTextbox');
             let countdown = document.getElementById('countdown');
-            let uploadText = document.getElementById('uploadText');
+            let uploadStartText = document.getElementById('uploadStartText');
 
             let drawingRound = document.getElementById('drawingRound');
             let caption = document.getElementById('caption');
@@ -33,6 +33,18 @@ let app = {
             let context = canvas.getContext('2d');
             let uploadPicture = document.getElementById('uploadPicture');
             let clearCanvas = document.getElementById('clearCanvas');
+
+            let writingRound = document.getElementById('writingRound');
+            let textbox = document.getElementById('textbox');
+            let uploadText = document.getElementById('uploadText');
+            let staticCanvas = document.getElementById('staticCanvas');
+            let staticContext = staticCanvas.getContext('2d');
+
+            staticCanvas.width = window.innerWidth - 20;
+            staticCanvas.height = window.innerHeight - 100;
+            staticCanvas.style.border = '1px dashed #000';
+
+            let submittedDiv = document.getElementById('submittedDiv');
 
 
             joinGame.onclick = (e) => {
@@ -45,21 +57,42 @@ let app = {
                 socket.emit('startGame');
             };
 
-            uploadText.onclick = (e) => {
+            uploadStartText.onclick = (e) => {
                 clearInterval(timerInterval);
                 timeLeft = 60;
-                socket.emit('uploadText', textbox.value);
-                startPhrase.innerHTML = '<p>Submitted! Waiting for other players...</p>';
+
+                socket.emit('uploadText', startPhraseTextbox.value);
+
+                startPhrase.style.display = 'none';
+                submittedDiv.style.display = '';
             };
 
             uploadPicture.onclick = (e) => {
+                clearInterval(timerInterval);
+                timeLeft = 60;
+
                 let picture = canvas.toDataURL();
                 socket.emit('uploadPicture', picture);
-                drawingRound.innerHTML = '<p>Submitted! Waiting for other players...</p>';
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                drawingRound.style.display = 'none';
+                submittedDiv.style.display = '';
             };
 
             clearCanvas.onclick = (e) => {
                 context.clearRect(0, 0, canvas.width, canvas.height);
+            };
+
+            uploadText.onclick = (e) => {
+                clearInterval(timerInterval);
+                timeLeft = 60;
+
+                socket.emit('uploadText', textbox.value);
+                textbox.value = '';
+
+                writingRound.style.display = 'none';
+                submittedDiv.style.display = '';
             };
 
             socket.on('downloadText', (text) => {
@@ -75,19 +108,35 @@ let app = {
                 }, 1000);
 
                 caption.innerHTML = text;
+
                 startPhrase.style.display = 'none';
+                writingRound.style.display = 'none';
+                submittedDiv.style.display = 'none';
                 drawingRound.style.display = '';
             });
 
             socket.on('downloadPicture', (picture) => {
-                console.log(picture);
-                /*context.clearRect(0, 0, canvas.width, canvas.height);
-                
-                var img = new Image;
+                countdown.innerHTML = `Time Left: ${timeLeft} seconds`;
+                writingRound.insertBefore(countdown, staticCanvas);
+
+                timerInterval = setInterval(() => {
+                    if (timeLeft == 0) {
+                        uploadText.click();
+                    }
+
+                    countdown.innerHTML = `Time Left: ${timeLeft--} seconds`;
+                }, 1000);
+
+                staticContext.clearRect(0, 0, canvas.width, canvas.height);
+                let img = new Image;
                 img.onload = function() {
-                    context.drawImage(img, 0, 0);
+                    staticContext.drawImage(img, 0, 0);
                 };
-                img.src = picture;*/
+                img.src = picture;
+
+                drawingRound.style.display = 'none';
+                submittedDiv.style.display = 'none';
+                writingRound.style.display = '';
             });
 
             socket.on('startGame', () => {
@@ -98,7 +147,7 @@ let app = {
 
                 timerInterval = setInterval(() => {
                     if (timeLeft == 0) {
-                        uploadText.click();
+                        uploadStartText.click();
                     }
 
                     countdown.innerHTML = `Time Left: ${timeLeft--} seconds`;
