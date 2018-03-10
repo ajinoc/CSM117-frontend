@@ -48,6 +48,10 @@ let app = {
 
 
             joinGame.onclick = (e) => {
+                if (!playerName.value) {
+                    return;
+                }
+
                 socket.emit('setName', playerName.value);
                 homepage.style.display = 'none';
                 roomList.style.display = '';
@@ -139,6 +143,16 @@ let app = {
                 writingRound.style.display = '';
             });
 
+            socket.on('getNames', (names) => {
+              let nameList = '';
+
+              for (id in names) {
+                nameList += `<li>${names[id]}</li>`;
+              }
+
+              playerList.innerHTML = nameList;
+            });
+
             socket.on('startGame', () => {
                 roomList.style.display = 'none';
                 startPhrase.style.display = '';
@@ -154,14 +168,8 @@ let app = {
                 }, 1000);
             });
 
-            socket.on('getNames', (names) => {
-              let nameList = '';
-
-              for (id in names) {
-                nameList += `<li>${names[id]}</li>`;
-              }
-
-              playerList.innerHTML = nameList;
+            socket.on('endGame', () => {
+                alert('Game over!');
             });
         }
     }
