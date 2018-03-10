@@ -45,6 +45,7 @@ let app = {
             staticCanvas.style.border = '1px dashed #000';
 
             let submittedDiv = document.getElementById('submittedDiv');
+            let endGame = document.getElementById('endGame');
 
 
             joinGame.onclick = (e) => {
@@ -168,8 +169,16 @@ let app = {
                 }, 1000);
             });
 
-            socket.on('endGame', () => {
-                alert('Game over!');
+            socket.on('endGame', (names, rounds) => {
+                clearInterval(timerInterval);
+                drawingRound.style.display = 'none';
+                writingRound.style.display = 'none';
+                submittedDiv.style.display = 'none';
+                endGame.style.display = '';
+
+                console.log(names);
+                console.log(rounds);
+
             });
         }
     }
