@@ -169,16 +169,45 @@ let app = {
                 }, 1000);
             });
 
-            socket.on('endGame', (names, rounds) => {
+            socket.on('endGame', (ids, names, rounds) => {
                 clearInterval(timerInterval);
                 drawingRound.style.display = 'none';
                 writingRound.style.display = 'none';
                 submittedDiv.style.display = 'none';
                 endGame.style.display = '';
 
-                console.log(names);
-                console.log(rounds);
+                document.getElementById('body').style = '';
 
+                let position = ids.findIndex((e) => e == socket.id);
+
+                let innerHTML = '';
+                innerHTML += `<h2>${names[socket.id]}'s Results</h2>`;
+
+                for (let i = 0; i < ids.length; i++) {
+                    let nextPlayerIndex = (position + i) % ids.length;
+                    let nextPlayerId = ids[nextPlayerIndex];
+                    let nextPlayerName = names[nextPlayerId];
+
+                    innerHTML += '<div>';
+                    innerHTML += `<h3>Round ${i+1}</h3>`;
+
+                    if (i % 2 == 0) {
+                        // text
+                        innerHTML += `<p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p>`;
+                    } else {
+                        // picture
+                        innerHTML += `<p>${nextPlayerName} drew: </p>`;
+                        innerHTML += `<img width="${window.innerWidth - 20}" \
+                                           height="${window.innerHeight - 100}" \
+                                           style="border: 1px dashed #000" \
+                                           src="${rounds[i][nextPlayerId]}">`;
+                    }
+
+                    innerHTML += '</div>';
+                }
+
+
+                endGame.innerHTML = innerHTML;
             });
         }
     }
