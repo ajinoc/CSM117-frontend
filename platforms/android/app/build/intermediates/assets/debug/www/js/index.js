@@ -206,8 +206,17 @@ let app = {
                     innerHTML += '</div>';
                 }
 
+                endGame.innerHTML = innerHTML + endGame.innerHTML;
 
-                endGame.innerHTML = innerHTML;
+                let restartGame = document.getElementById('restartGame');
+
+                // Do your magic here
+                restartGame.onclick = (e) => {
+                    alert('hello');
+                    endGame.style.display = 'none';
+                    homepage.style.display = '';
+                };
+                
             });
         }
     }

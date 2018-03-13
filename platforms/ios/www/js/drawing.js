@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
   }, 1000);
 }, false);
 
-function newCanvas(){
-  canvas = document.getElementById("canvas"); 
-  canvas.width = window.innerWidth;
+function newCanvas() {
+  canvas = document.getElementById("canvas");
+  canvas.width = window.innerWidth - 20;
   canvas.height = window.innerHeight - 100;
-
+  canvas.style.border = '1px dashed #000';
+  
   ctx = canvas.getContext("2d");
 
   ctx.strokeStyle = color;
@@ -42,10 +43,10 @@ var drawTouch = function() {
 
 
 var drawMouse = function() {
-  var clicked = 0;
+  var clicked = false
 
   var start = function(e) {
-    clicked = 1;
+    clicked = true;
     ctx.beginPath();
     x = e.pageX;
     y = e.pageY - canvas.offsetTop;
@@ -53,7 +54,7 @@ var drawMouse = function() {
   };
 
   var move = function(e) {
-    if(clicked) {
+    if (clicked) {
       x = e.pageX;
       y = e.pageY - canvas.offsetTop;
       ctx.lineTo(x,y);
@@ -62,7 +63,7 @@ var drawMouse = function() {
   };
 
   var stop = function(e) {
-    clicked = 0;
+    clicked = false;
   };
 
   document.getElementById("canvas").addEventListener("mousedown", start, false);

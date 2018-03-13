@@ -46,6 +46,7 @@ let app = {
 
             let submittedDiv = document.getElementById('submittedDiv');
             let endGame = document.getElementById('endGame');
+            let endGameHTML = endGame.innerHTML;
 
 
             joinGame.onclick = (e) => {
@@ -206,8 +207,21 @@ let app = {
                     innerHTML += '</div>';
                 }
 
+                endGame.innerHTML = innerHTML + endGameHTML;
 
-                endGame.innerHTML = innerHTML;
+                let restartGame = document.getElementById('restartGame');
+
+                // Do your magic here
+                restartGame.onclick = (e) => {
+                    socket.emit('restartGame');
+                };
+                
+            });
+
+            socket.on('restartGame', () => {
+                endGame.innerHTML = endGameHTML;
+                endGame.style.display = 'none';
+                homepage.style.display = '';
             });
         }
     }
