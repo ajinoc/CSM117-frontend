@@ -29,33 +29,34 @@
                 </h3>
                 <p>Enter Name Here: <input type="text" id="playerName" class="textbox"></p>
                 <button id="joinGame" class="btn btn-primary btn-xl">Join Game</button>
+                <canvas id="test"></canvas>
             </div>
 
             <div id="roomList" style="display: none">
-                <p>Players:</p>
+                <h2>Current Players:</h2>
                 <ul id="playerList" style="list-style-type:none">
                 </ul><br>   
-                <button id="startGame">Start Game</button>
+                <button id="startGame" class="btn btn-primary btn-xl">Start Game</button>
             </div>
 
             <div id="startPhrase" style="display: none">
                 <p>Enter phrase here: <input type="text" id="startPhraseTextbox"></p>
                 <p id="countdown"></p>
-                <button id="uploadStartText">Submit</button>
+                <button id="uploadStartText" class="btn btn-secondary btn-xl">Submit</button>
             </div>
 
             <div id="drawingRound" style="display: none">
                 <h2>Drawing time!</h2>
                 <p>Draw a picture of the following phrase: <span id="caption"></span></p>
-                <button id="uploadPicture">Send picture</button>
-                <button id="clearCanvas">Clear</button><br><br>
+                <button id="uploadPicture" class="btn btn-secondary btn-xl">Send picture</button>
+                <button id="clearCanvas" class="btn btn-secondary btn-xl">Clear</button><br><br>
                 <canvas id="canvas"></canvas>
             </div>
 
             <div id="writingRound" style="display: none">
                 <h2>Writing time!</h2>
                 <p>Write a sentence describing the following picture: <input type="text" id="textbox"></p>
-                <button id="uploadText">Submit</button>
+                <button id="uploadText" class="btn btn-secondary btn-xl">Submit</button>
                 <canvas id="staticCanvas"></canvas>
             </div>
 
@@ -66,7 +67,7 @@
             <div id="endGame" style="display: none">
                 <h2>Play again?</h2>
                 <p>This will bring you back to the home page!</p>
-                <button id="restartGame">Restart Game</button>
+                <button id="restartGame" class="btn btn-primary btn-xl">Restart Game</button>
             </div>
         </div>
         </header>

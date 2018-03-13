@@ -4,43 +4,59 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+        
         <title>Telestrations</title>
     </head>
     <body id="body" style="touch-action: none">
-        <div class="app">
-            <h1>Telestrations</h1>
+        <header class="masthead de-flex">
+        <div class="app container text-center my-auto">
+            <h1 class="mb-1">Telestrations</h1>
 
             <div id="homepage">
-                <p>Enter Name Here: <input type="text" id="playerName"></p>
-                <button id="joinGame">Join Game</button>
+                <h3 class="mb-5">
+                    <em>The Classic Telephone Game Sketched Out... On Mobile!</em>
+                </h3>
+                <p>Enter Name Here: <input type="text" id="playerName" class="textbox"></p>
+                <button id="joinGame" class="btn btn-primary btn-xl">Join Game</button>
+                <canvas id="test"></canvas>
             </div>
 
             <div id="roomList" style="display: none">
-                <p>Players:</p>
+                <h2>Current Players:</h2>
                 <ul id="playerList" style="list-style-type:none">
                 </ul><br>   
-                <button id="startGame">Start Game</button>
+                <button id="startGame" class="btn btn-primary btn-xl">Start Game</button>
             </div>
 
             <div id="startPhrase" style="display: none">
                 <p>Enter phrase here: <input type="text" id="startPhraseTextbox"></p>
                 <p id="countdown"></p>
-                <button id="uploadStartText">Submit</button>
+                <button id="uploadStartText" class="btn btn-secondary btn-xl">Submit</button>
             </div>
 
             <div id="drawingRound" style="display: none">
                 <h2>Drawing time!</h2>
                 <p>Draw a picture of the following phrase: <span id="caption"></span></p>
-                <button id="uploadPicture">Send picture</button>
-                <button id="clearCanvas">Clear</button><br><br>
+                <button id="uploadPicture" class="btn btn-secondary btn-xl">Send picture</button>
+                <button id="clearCanvas" class="btn btn-secondary btn-xl">Clear</button><br><br>
                 <canvas id="canvas"></canvas>
             </div>
 
             <div id="writingRound" style="display: none">
                 <h2>Writing time!</h2>
                 <p>Write a sentence describing the following picture: <input type="text" id="textbox"></p>
-                <button id="uploadText">Submit</button>
+                <button id="uploadText" class="btn btn-secondary btn-xl">Submit</button>
                 <canvas id="staticCanvas"></canvas>
             </div>
 
@@ -51,9 +67,10 @@
             <div id="endGame" style="display: none">
                 <h2>Play again?</h2>
                 <p>This will bring you back to the home page!</p>
-                <button id="restartGame">Restart Game</button>
+                <button id="restartGame" class="btn btn-primary btn-xl">Restart Game</button>
             </div>
         </div>
+        </header>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

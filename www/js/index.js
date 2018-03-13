@@ -191,7 +191,7 @@ let app = {
                     let nextPlayerName = names[nextPlayerId];
 
                     innerHTML += '<div>';
-                    innerHTML += `<h3>Round ${i+1}</h3>`;
+                    innerHTML += `<h3><em>Round ${i+1}</em></h3>`;
 
                     if (i % 2 == 0) {
                         // text
@@ -200,8 +200,8 @@ let app = {
                         // picture
                         innerHTML += `<p>${nextPlayerName} drew: </p>`;
                         innerHTML += `<img width="${window.innerWidth - 20}" \
-                                           height="${window.innerHeight - 100}" \
-                                           style="border: 1px dashed #000" \
+                                           height="${window.innerHeight - 200}" \
+                                           style="border: 1px dashed #000; background: #efede6" \
                                            src="${rounds[i][nextPlayerId]}">`;
                     }
 
