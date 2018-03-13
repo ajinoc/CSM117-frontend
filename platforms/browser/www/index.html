@@ -4,16 +4,31 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+        
         <title>Telestrations</title>
     </head>
     <body id="body" style="touch-action: none">
-        <div class="app">
-            <h1>Telestrations</h1>
+        <header class="masthead de-flex">
+        <div class="app container text-center my-auto">
+            <h1 class="mb-1">Telestrations</h1>
 
             <div id="homepage">
+                <h3 class="mb-5">
+                    <em>The Classic Telephone Game Sketched Out... On Mobile!</em>
+                </h3>
                 <p>Enter Name Here: <input type="text" id="playerName"></p>
-                <button id="joinGame">Join Game</button>
+                <button id="joinGame" class="btn btn-primary btn-xl">Join Game</button>
             </div>
 
             <div id="roomList" style="display: none">
@@ -54,6 +69,7 @@
                 <button id="restartGame">Restart Game</button>
             </div>
         </div>
+        </header>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

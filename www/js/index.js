@@ -158,7 +158,7 @@ let app = {
             socket.on('startGame', () => {
                 roomList.style.display = 'none';
                 startPhrase.style.display = '';
-
+                console.log(timeLeft);
                 countdown.innerHTML = `Time Left: ${timeLeft} seconds`;
 
                 timerInterval = setInterval(() => {
@@ -168,6 +168,7 @@ let app = {
 
                     countdown.innerHTML = `Time Left: ${timeLeft--} seconds`;
                 }, 1000);
+                timeLeft = 60;
             });
 
             socket.on('endGame', (ids, names, rounds) => {
