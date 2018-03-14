@@ -13,10 +13,23 @@ canvas {
   margin: auto;
   display: block;
   background: #efede6;
+  text-align: initial;
 }
 
-.text-arrange {
-  text-align: center;
+.carousel {
+  position: relative;
+  width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-item {
+  max-height: 100vh;
+  min-width: 100%;
+}
+
+.carousel-indicators {
+  bottom: -15px;
 }
 
 .btn-xl {

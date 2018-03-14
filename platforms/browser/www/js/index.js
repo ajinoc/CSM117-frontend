@@ -55,6 +55,8 @@ let app = {
                 }
 
                 socket.emit('setName', playerName.value);
+                playerName.value = '';
+
                 homepage.style.display = 'none';
                 roomList.style.display = '';
             };
@@ -67,7 +69,15 @@ let app = {
                 clearInterval(timerInterval);
                 timeLeft = 60;
 
+                if(startPhraseTextbox.value == '') {
+                    console.log("User gave empty text");
+                    startPhraseTextbox.value = '(Empty)';
+                } else {
+                    startPhraseTextbox.value = '"' + startPhraseTextbox.value + '"';
+                }
+
                 socket.emit('uploadText', startPhraseTextbox.value);
+                startPhraseTextbox.value = '';
 
                 startPhrase.style.display = 'none';
                 submittedDiv.style.display = '';
@@ -185,6 +195,8 @@ let app = {
                 let innerHTML = '';
                 innerHTML += `<h2>${names[socket.id]}'s Results</h2>`;
 
+                let innerCarouselIndicators = '';
+                let innerCarousel = '';
                 for (let i = 0; i < ids.length; i++) {
                     let nextPlayerIndex = (position + i) % ids.length;
                     let nextPlayerId = ids[nextPlayerIndex];
@@ -193,26 +205,56 @@ let app = {
                     innerHTML += '<div>';
                     innerHTML += `<h3><em>Round ${i+1}</em></h3>`;
 
-                    if (i % 2 == 0) {
-                        // text
-                        innerHTML += `<p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p>`;
+                    /*
+                    // Add inner HTML for indicators
+                    if( i == 0 ) {
+                        innerCarouselIndicators += `<li data-target="#myCarousel" data-slide-to="${i}" class="active"></li>`;
                     } else {
-                        // picture
+                        innerCarouselIndicators += `<li data-target="#myCarousel" data-slide-to="${i}"></li>`;
+                    }
+
+
+                    // Add inner HTML for slide wrappers 
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="la.jpg" alt="Los Angeles">
+                        </div>
+
+                        <div class="item">
+                            <img src="chicago.jpg" alt="Chicago">
+                        </div>
+
+                        <div class="item">
+                            <img src="ny.jpg" alt="New York">
+                        </div>
+                    </div>
+                    */
+                    if (i % 2 == 0) {
+                        // Round is text phrase
+                        innerHTML += `<p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p>`;
+                        /*innerCarousel += `<div class="item active"> \
+                                              <p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p> \
+                                          </div>`;*/
+                    } else {
+                        // Round is picture drawing
                         innerHTML += `<p>${nextPlayerName} drew: </p>`;
                         innerHTML += `<img width="${window.innerWidth - 20}" \
                                            height="${window.innerHeight - 200}" \
                                            style="border: 1px dashed #000; background: #efede6" \
                                            src="${rounds[i][nextPlayerId]}">`;
+
                     }
 
                     innerHTML += '</div>';
                 }
 
+                // document.getElementById('carousel-indicators').innerHTML = innerCarouselIndicators;
                 endGame.innerHTML = innerHTML + endGameHTML;
 
                 let restartGame = document.getElementById('restartGame');
 
-                // Do your magic here
+                // Restart Game
                 restartGame.onclick = (e) => {
                     socket.emit('restartGame');
                 };
