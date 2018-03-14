@@ -197,15 +197,15 @@ let app = {
 
                 let innerCarouselIndicators = '';
                 let innerCarousel = '';
+
                 for (let i = 0; i < ids.length; i++) {
                     let nextPlayerIndex = (position + i) % ids.length;
                     let nextPlayerId = ids[nextPlayerIndex];
                     let nextPlayerName = names[nextPlayerId];
 
-                    innerHTML += '<div>';
-                    innerHTML += `<h3><em>Round ${i+1}</em></h3>`;
+                    // innerHTML += '<div>';
+                    // innerHTML += `<h3><em>Round ${i+1}</em></h3>`;
 
-                    /*
                     // Add inner HTML for indicators
                     if( i == 0 ) {
                         innerCarouselIndicators += `<li data-target="#myCarousel" data-slide-to="${i}" class="active"></li>`;
@@ -213,44 +213,67 @@ let app = {
                         innerCarouselIndicators += `<li data-target="#myCarousel" data-slide-to="${i}"></li>`;
                     }
 
-
+                    /*
                     // Add inner HTML for slide wrappers 
 
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="la.jpg" alt="Los Angeles">
+                    <div id="inner-items" class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="d-block h-100">
+                            <h3><em>Round 1</em></h3>
+                            <p>You wrote: "test boys"</p>
                         </div>
-
-                        <div class="item">
-                            <img src="chicago.jpg" alt="Chicago">
                         </div>
-
-                        <div class="item">
-                            <img src="ny.jpg" alt="New York">
+                        <div class="carousel-item">
+                            <h3><em>Round 2</em></h3>
+                            <img src="img/logo.png" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <h3><em>Round 3</em></h3>
+                            <p>Someonelse wrote: "test boys"</p>
                         </div>
                     </div>
                     */
                     if (i % 2 == 0) {
                         // Round is text phrase
-                        innerHTML += `<p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p>`;
-                        /*innerCarousel += `<div class="item active"> \
-                                              <p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p> \
-                                          </div>`;*/
+                        if(i == 0){
+                            innerCarousel += `<div class="carousel-item active"> \
+                                                <h3><em>Round ${i+1}</em></h3> \
+                                                <p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p> \
+                                              </div>`;
+                        } else {
+                            innerCarousel += `<div class="carousel-item"> \
+                                                <h3><em>Round ${i+1}</em></h3> \
+                                                <p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p> \
+                                              </div>`;
+                        }
+                        // Round is text phrase
+                        // innerHTML += `<p>${nextPlayerName} wrote: ${rounds[i][nextPlayerId]}</p>`;
+                        
                     } else {
                         // Round is picture drawing
-                        innerHTML += `<p>${nextPlayerName} drew: </p>`;
+                        
+                        /*innerHTML += `<p>${nextPlayerName} drew: </p>`;
                         innerHTML += `<img width="${window.innerWidth - 20}" \
                                            height="${window.innerHeight - 200}" \
                                            style="border: 1px dashed #000; background: #efede6" \
                                            src="${rounds[i][nextPlayerId]}">`;
-
+                        */
+                        innerCarousel += `<div class="carousel-item"> \
+                                            <h3><em>Round ${i+1}</em></h3> \
+                                            <img width="${window.innerWidth - 20}" \
+                                                 height="${window.innerHeight - 200}" \
+                                                 style="border: 1px dashed #000; background: #efede6" \
+                                                 src="${rounds[i][nextPlayerId]}"> \
+                                          </div>`;
                     }
 
-                    innerHTML += '</div>';
+                    // innerHTML += '</div>';
                 }
-
-                // document.getElementById('carousel-indicators').innerHTML = innerCarouselIndicators;
-                endGame.innerHTML = innerHTML + endGameHTML;
+                console.log(innerCarouselIndicators);
+                console.log(innerCarousel);
+                document.getElementById('indicators').innerHTML = innerCarouselIndicators;
+                document.getElementById('inner-items').innerHTML = innerCarousel;
+                endGame.innerHTML = innerHTML + endGame.innerHTML;
 
                 let restartGame = document.getElementById('restartGame');
 

@@ -251,8 +251,8 @@ let app = {
                         
                     } else {
                         // Round is picture drawing
-                        /*
-                        innerHTML += `<p>${nextPlayerName} drew: </p>`;
+                        
+                        /*innerHTML += `<p>${nextPlayerName} drew: </p>`;
                         innerHTML += `<img width="${window.innerWidth - 20}" \
                                            height="${window.innerHeight - 200}" \
                                            style="border: 1px dashed #000; background: #efede6" \
@@ -267,12 +267,13 @@ let app = {
                                           </div>`;
                     }
 
-                    innerHTML += '</div>';
+                    // innerHTML += '</div>';
                 }
-
+                console.log(innerCarouselIndicators);
+                console.log(innerCarousel);
                 document.getElementById('indicators').innerHTML = innerCarouselIndicators;
                 document.getElementById('inner-items').innerHTML = innerCarousel;
-                endGame.innerHTML = innerHTML + endGameHTML;
+                endGame.innerHTML = innerHTML + endGame.innerHTML;
 
                 let restartGame = document.getElementById('restartGame');
 
