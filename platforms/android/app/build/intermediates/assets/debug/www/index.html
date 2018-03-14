@@ -4,43 +4,91 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+        
         <title>Telestrations</title>
     </head>
     <body id="body" style="touch-action: none">
-        <div class="app">
-            <h1>Telestrations</h1>
+        <header class="masthead de-flex">
+        <div class="app text-center"> 
+            <h1 class="mb-1">Telestrations</h1>
 
             <div id="homepage">
-                <p>Enter Name Here: <input type="text" id="playerName"></p>
-                <button id="joinGame">Join Game</button>
+                <h3 class="mb-5">
+                    <em>The Classic Telephone Game Sketched Out... On Mobile!</em>
+                </h3>
+                <p>Enter Name Here: <input type="text" id="playerName" placeholder="Josie Bruin"></p>
+                <button id="joinGame" class="btn btn-primary btn-xl">Join Game</button>
+                    <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                                <li data-target="#myCarousel" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="d-block h-100">
+                                    <h3><em>Round 1</em></h3>
+                                    <p>You wrote: "test boys"</p>
+                                </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <h3><em>Round 2</em></h3>
+                                    <img src="img/logo.png" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <h3><em>Round 3</em></h3>
+                                    <p>Someonelse wrote: "test boys"</p>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>-->
             </div>
 
             <div id="roomList" style="display: none">
-                <p>Players:</p>
+                <h2>Current Players:</h2>
                 <ul id="playerList" style="list-style-type:none">
                 </ul><br>   
-                <button id="startGame">Start Game</button>
+                <button id="startGame" class="btn btn-primary btn-xl">Start Game</button>
             </div>
 
             <div id="startPhrase" style="display: none">
-                <p>Enter phrase here: <input type="text" id="startPhraseTextbox"></p>
+                <p>Enter phrase here: <input type="text" id="startPhraseTextbox" placeholder="Gunter is Orgalorg"></p>
                 <p id="countdown"></p>
-                <button id="uploadStartText">Submit</button>
+                <button id="uploadStartText" class="btn btn-secondary btn-xl">Submit</button>
             </div>
 
             <div id="drawingRound" style="display: none">
                 <h2>Drawing time!</h2>
                 <p>Draw a picture of the following phrase: <span id="caption"></span></p>
-                <button id="uploadPicture">Send picture</button>
-                <button id="clearCanvas">Clear</button><br><br>
+                <button id="uploadPicture" class="btn btn-secondary btn-xl">Send picture</button>
+                <button id="clearCanvas" class="btn btn-secondary btn-xl">Clear</button><br><br>
                 <canvas id="canvas"></canvas>
             </div>
 
             <div id="writingRound" style="display: none">
                 <h2>Writing time!</h2>
-                <p>Write a sentence describing the following picture: <input type="text" id="textbox"></p>
-                <button id="uploadText">Submit</button>
+                <p>Write a sentence describing the following picture: <input type="text" id="textbox" placeholder="Gunter is Orgalorg"></p>
+                <button id="uploadText" class="btn btn-secondary btn-xl">Submit</button>
                 <canvas id="staticCanvas"></canvas>
             </div>
 
@@ -49,12 +97,40 @@
             </div>
 
             <div id="endGame" style="display: none">
-                <button id="restartGame">Restart Game</button>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol id="indicators" class="carousel-indicators">
+                    </ol>
+                    <!-- Wrappers -->
+                    <div id="inner-items" class="carousel-inner">
+                    </div>
+                    <!-- Controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <h2>Play again?</h2>
+                <p>This will bring you back to the home page!</p>
+                <button id="restartGame" class="btn btn-primary btn-xl">Restart Game</button>
             </div>
         </div>
+        </header>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/drawing.js"></script>
+
+        
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     </body>
 </html>
