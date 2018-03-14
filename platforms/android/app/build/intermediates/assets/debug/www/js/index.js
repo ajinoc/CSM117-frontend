@@ -188,8 +188,6 @@ let app = {
                 submittedDiv.style.display = 'none';
                 endGame.style.display = '';
 
-                document.getElementById('body').style = '';
-
                 let position = ids.findIndex((e) => e == socket.id);
 
                 let innerHTML = '';
