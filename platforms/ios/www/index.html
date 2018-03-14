@@ -18,18 +18,17 @@
         
         <title>Telestrations</title>
     </head>
-    <body id="body" style="touch-action: none">
-        <header class="masthead de-flex">
-        <div class="app container text-center my-auto">
+    <body id="body" style="touch-action: none; background-color: #F6BB07">
+        <header class="masthead">
+        <div class="app text-center"> 
             <h1 class="mb-1">Telestrations</h1>
 
             <div id="homepage">
                 <h3 class="mb-5">
                     <em>The Classic Telephone Game Sketched Out... On Mobile!</em>
                 </h3>
-                <p>Enter Name Here: <input type="text" id="playerName" class="textbox"></p>
+                <p>Enter Name Here: <input type="text" id="playerName" placeholder="Josie Bruin"></p>
                 <button id="joinGame" class="btn btn-primary btn-xl">Join Game</button>
-                <canvas id="test"></canvas>
             </div>
 
             <div id="roomList" style="display: none">
@@ -40,7 +39,7 @@
             </div>
 
             <div id="startPhrase" style="display: none">
-                <p>Enter phrase here: <input type="text" id="startPhraseTextbox"></p>
+                <p>Enter phrase here: <input type="text" id="startPhraseTextbox" placeholder="Gunter is Orgalorg"></p>
                 <p id="countdown"></p>
                 <button id="uploadStartText" class="btn btn-secondary btn-xl">Submit</button>
             </div>
@@ -55,7 +54,7 @@
 
             <div id="writingRound" style="display: none">
                 <h2>Writing time!</h2>
-                <p>Write a sentence describing the following picture: <input type="text" id="textbox"></p>
+                <p>Write a sentence describing the following picture: <input type="text" id="textbox" placeholder="Gunter is Orgalorg"></p>
                 <button id="uploadText" class="btn btn-secondary btn-xl">Submit</button>
                 <canvas id="staticCanvas"></canvas>
             </div>
@@ -65,15 +64,40 @@
             </div>
 
             <div id="endGame" style="display: none">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol id="indicators" class="carousel-indicators">
+                    </ol>
+                    <!-- Wrappers -->
+                    <div id="inner-items" class="carousel-inner">
+                    </div>
+                    <!-- Controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
                 <h2>Play again?</h2>
                 <p>This will bring you back to the home page!</p>
                 <button id="restartGame" class="btn btn-primary btn-xl">Restart Game</button>
             </div>
         </div>
-        </header>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/socket.io.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/drawing.js"></script>
+
+        
+        <!-- Bootstrap core JavaScript -->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Plugin JavaScript -->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    </header>
     </body>
 </html>

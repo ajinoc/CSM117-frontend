@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function newCanvas() {
   canvas = document.getElementById("canvas");
-  canvas.width = window.innerWidth - 100;
+  canvas.width = window.innerWidth - 20;
   canvas.height = window.innerHeight - 100;
   canvas.style.border = '1px dashed #000';
   
@@ -24,14 +24,14 @@ function newCanvas() {
 var drawTouch = function() {
   var start = function(e) {
     ctx.beginPath();
-    x = e.changedTouches[0].pageX;
+    x = e.changedTouches[0].pageX + canvas.offsetLeft;
     y = e.changedTouches[0].pageY - canvas.offsetTop;
     ctx.moveTo(x,y);
   };
 
   var move = function(e) {
     e.preventDefault();
-    x = e.changedTouches[0].pageX;
+    x = e.changedTouches[0].pageX + canvas.offsetLeft;
     y = e.changedTouches[0].pageY - canvas.offsetTop;
     ctx.lineTo(x,y);
     ctx.stroke();
