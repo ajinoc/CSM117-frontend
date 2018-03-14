@@ -26,7 +26,6 @@
     <author email="adam.jones@ucla.edu" href="https://github.com/ajinoc/CSM117-frontend">
         Telestrations Team
     </author>
-    <content src="index.html" />
     <access origin="https://telestrations-csm117.herokuapp.com/*" />
     <access origin="wss://telestrations-csm117.herokuapp.com/*" />
     <allow-navigation href="https://telestrations-csm117.herokuapp.com/*" />
